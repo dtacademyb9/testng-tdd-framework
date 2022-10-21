@@ -10,6 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.ConfigReader;
+import utils.SeleniumUtils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,6 +26,10 @@ public class LoginTests extends TestBase{
     public void loginPositive() throws IOException {
 
          driver.findElement(By.id("ctl00_MainContent_username")).sendKeys(ConfigReader.getProperty("username"), Keys.TAB, ConfigReader.getProperty("password"), Keys.ENTER);
+
+         SeleniumUtils.getScreenshot("failedLogin");
+//         SeleniumUtils.waitForPresenceOfElementLocated(By.id("ctl00_logout"), 5);
+//         SeleniumUtils.waitForTitleIs("Web Orders", 5);
          Assert.assertEquals(driver.getTitle(), "Web Orders");
     }
 
