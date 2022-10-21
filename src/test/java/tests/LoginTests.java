@@ -9,8 +9,13 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utils.ConfigReader;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 public class LoginTests {
 
@@ -22,8 +27,8 @@ public class LoginTests {
         WebDriverManager.chromedriver().setup();
         driver =  new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get("http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("implicitWait"))));
+        driver.get(ConfigReader.getProperty("url"));
     }
 
     @AfterMethod(alwaysRun = true)
@@ -35,8 +40,9 @@ public class LoginTests {
 
 
     @Test (groups = "smoke")
-    public void loginPositive(){
-         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester", Keys.TAB, "test", Keys.ENTER);
+    public void loginPositive() throws IOException {
+
+         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys(ConfigReader.getProperty("username"), Keys.TAB, ConfigReader.getProperty("password"), Keys.ENTER);
          Assert.assertEquals(driver.getTitle(), "Web Orders");
     }
 
@@ -57,13 +63,13 @@ public class LoginTests {
 
     @Test
     public void loginNegativeWrongPass(){
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester", Keys.TAB, "dsjajdsj", Keys.ENTER);
+        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys(ConfigReader.getProperty("username"), Keys.TAB, "dsjajdsj", Keys.ENTER);
         Assert.assertEquals(driver.getTitle(), "Web Orders Login");
     }
 
     @Test
     public void loginNegativeWrongUsername(){
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Donald Duck", Keys.TAB, "test", Keys.ENTER);
+        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Donald Duck", Keys.TAB, ConfigReader.getProperty("password"), Keys.ENTER);
         Assert.assertEquals(driver.getTitle(), "Web Orders Login");
     }
 
