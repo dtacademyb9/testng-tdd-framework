@@ -14,23 +14,8 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 
-public class AllOrdersTests {
+public class AllOrdersTests extends TestBase {
 
-    WebDriver driver;
-
-    @BeforeMethod(alwaysRun = true)
-    public void setupMethod(){
-        WebDriverManager.chromedriver().setup();
-        driver =  new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get("http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDownMethod(){
-        driver.quit();
-    }
 
 
 

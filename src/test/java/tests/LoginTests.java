@@ -17,25 +17,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
-public class LoginTests {
-
-
-    WebDriver driver;
-
-    @BeforeMethod(alwaysRun = true)
-    public void setupMethod(){
-        WebDriverManager.chromedriver().setup();
-        driver =  new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("implicitWait"))));
-        driver.get(ConfigReader.getProperty("url"));
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDownMethod(){
-        driver.quit();
-    }
-
+public class LoginTests extends TestBase{
 
 
 
