@@ -1,0 +1,54 @@
+
+TestNG TDD Framework Building Steps:
+  1. Create a maven project
+  2. Add project related dependencies (Selenium Java, TestNG, WebdriverManager,etc)
+  3. Create the package structure
+  4. Add .gitignore file
+  5. Add the utility classes (SeleniumUtils, Driver, ConfigReader)
+  6. Add the .properties file with the project specific global variables
+  7. Add TestBase class with Before and After annotations
+  8. Add Extent reports for visual html reports
+  9. Add Parallel and Cross-Browser test support.
+  10. Add Test classes with tests
+  11. Add Page classes with locators and methods
+  12. Create and configure a testng.xml file for specific test suite
+  13. Add maven surefire plugin to pom.xml and configure it to be able to pass xml file name from the command line
+
+
+
+TestNG TDD framework components:
+
+- Selenium - interact with browser, write UI test scripts
+- Java - programming language to write any code
+- TestNG - organize, configure and run tests, assertions.
+- Maven - manage dependencies, create project structure, run tests through CMD
+- WebDriverManager (bonigarcia) - manage browser drivers
+- Faker - generate mock test data
+- Extent reports - generate html reports
+- Utility classes - provide re-usable utility methods
+- config.properties - store project's global configuration variables such as browser type, url, username, passwords
+- testng.xml files - control and configure the execution tests
+- .gitignore file - exclude certain files and folders from being version controlled
+
+
+
+Design patterns used in the framework:
+
+Singleton Design Pattern -> A design pattern where an instantiation of a class is restricted to only one object.
+
+                           An example could be the Driver class where the Webdriver instantiation is done by getDriver() method that checks if the the WebDriver obj is already initialized.
+                           The purpose of using this pattern is to prevent multiple WebDriver objects being initialized.
+
+Page Object Model Design Pattern -> A design pattern specific to Selenium based test frameworks which is implemented by creating a separate class for each page of our
+                                    application which stores the page web elements and methods.
+                                    A design pattern that simplifies writing UI tests by creating a separate Page Object Classes where the elements of the page are stored. We usually use
+                                    Page Object Model along with Page Factory where we use @FindBy annotations and a constructor with factory method PageFactory.initElements() method.
+                                    The purpose is re-usability, maintainability and readability.
+PageFactory design pattern ->      This pattern uses @FindBy annotations to locate the elements and makes our Page classes more readable and concise.
+                                   We implement it by using PageFactory.initElements() method in a constructor of the page class
+                                   We also can use @FindBys to create chained matches and @FindAll to match multiple webelements on the page
+
+
+
+
+

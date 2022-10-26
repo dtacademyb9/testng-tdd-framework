@@ -4,12 +4,9 @@
 
     <test name="Tests">
 
-
-
-
-
         <packages>
             <package name="tests"/>
+
         </packages>
 
 

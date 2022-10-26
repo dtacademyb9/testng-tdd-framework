@@ -10,6 +10,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.AllOrdersPage;
+import pages.LoginPage;
 
 import java.time.Duration;
 import java.util.List;
@@ -22,14 +24,14 @@ public class AllOrdersTests extends TestBase {
 
     @Test (groups = "smoke")
     public void checkAllButton(){
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester", Keys.TAB, "test", Keys.ENTER);
 
-        driver.findElement(By.id("ctl00_MainContent_btnCheckAll")).click();
+        LoginPage loginPage = new LoginPage();
+        loginPage.login();
 
-        List<WebElement> checkboxes = driver.findElements(By.xpath("//table//input[@type='checkbox']"));
+        AllOrdersPage allOrdersPage = new AllOrdersPage();
+        allOrdersPage.checkAllButton.click();
 
-
-        for (WebElement checkbox : checkboxes) {
+        for (WebElement checkbox : allOrdersPage.checkboxes) {
 
             Assert.assertTrue(checkbox.isSelected());
         }
