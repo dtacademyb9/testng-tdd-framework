@@ -19,7 +19,12 @@ public class Driver {
 
         if(driver == null){
 
-            String browser = ConfigReader.getProperty("browser");
+            String browser =  System.getProperty("browser");
+
+            if( browser == null){
+                browser = ConfigReader.getProperty("browser");
+            }
+
 
             switch (browser){
 

@@ -19,6 +19,7 @@ import utils.SeleniumUtils;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -44,6 +45,7 @@ public class LoginTests extends TestBase{
     @Test (groups = "smoke")
     public void loginNegativeBadCredentials(){
 
+        System.out.println(System.getProperty("browser"));
         loginPage = new LoginPage();
         loginPage.login("Blaba", "blala");
         Assert.assertEquals(driver.getTitle(), "Web Orders Login");
