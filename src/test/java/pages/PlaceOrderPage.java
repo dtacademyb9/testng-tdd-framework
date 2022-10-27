@@ -79,6 +79,15 @@ public class PlaceOrderPage {
         zip.sendKeys("22345");
     }
 
+    public void enterData(String fullName, String address, String city1, String state1, String zip1){
+
+        customer.sendKeys(fullName);
+        street.sendKeys(address);
+        city.sendKeys(city1);
+        state.sendKeys(state1);
+        zip.sendKeys(zip1);
+    }
+
     public void enterCardDetails(){
 
         cardNo.sendKeys(new Faker().business().creditCardNumber().replace("-", ""));

@@ -15,11 +15,11 @@ public class LoginPage {
      // Use @FindBy annotations to locate the webelements
 
      public LoginPage(){
-          PageFactory.initElements(Driver.getDriver(),this);
+          PageFactory.initElements(Driver.getDriver(),this); // initialize Webelements with @FindBy annotations
      }
 
 
-
+  // Page Object Model without PageFactory
 //     public WebElement usernameField =  Driver.getDriver().findElement(By.id("ctl00_MainContent_username"));
 //     public WebElement errorMessage =  Driver.getDriver().findElement(By.id("ctl00_MainContent_status"));
 
