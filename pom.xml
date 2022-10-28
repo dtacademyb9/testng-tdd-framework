@@ -20,14 +20,14 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.5.0</version>
+            <version>4.5.3</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.5</version>
+            <version>7.6.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -53,6 +53,14 @@
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.0.9</version>
+        </dependency>
+
+<!--        this dependency is added to prevent a command line issue related to lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <optional>true</optional>
         </dependency>
 
 

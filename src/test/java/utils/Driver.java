@@ -19,10 +19,10 @@ public class Driver {
 
         if(drivers.get() == null){
 
-            String browser =  System.getProperty("browser");
+            String browser =  System.getProperty("browser");  // read the browser from cmd
 
-            if( browser == null){
-                browser = ConfigReader.getProperty("browser");
+            if( browser == null){   // if no browser is passed thru cmd
+                browser = ConfigReader.getProperty("browser"); // read the browser from properties file
             }
 
 

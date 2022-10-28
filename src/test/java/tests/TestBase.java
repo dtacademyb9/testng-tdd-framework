@@ -29,7 +29,7 @@ public abstract class TestBase {
     @BeforeSuite (alwaysRun = true)
     public void setupSuite(){
         extentReport = new ExtentReports();
-        String path = System.getProperty("user.dir") + "/target/extentReports/htmlReport.html";
+        String path = System.getProperty("user.dir") + "/target/extentReports/htmlReport"+System.currentTimeMillis()+".html";
         htmlReport = new ExtentSparkReporter(path);
         extentReport.attachReporter(htmlReport);
 
