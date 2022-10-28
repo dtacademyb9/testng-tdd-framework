@@ -11,13 +11,13 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class Driver {
 
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
     private Driver(){}
 
-    public static WebDriver getDriver(){
+    public static synchronized WebDriver getDriver(){
 
-        if(driver == null){
+        if(drivers.get() == null){
 
             String browser =  System.getProperty("browser");
 
@@ -30,33 +30,33 @@ public class Driver {
 
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver =  new ChromeDriver();
+                    drivers.set( new ChromeDriver() );
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver =  new FirefoxDriver();
+                    drivers.set(new FirefoxDriver());
                     break;
                 case "edge":
                     WebDriverManager.edgedriver().setup();
-                    driver =  new EdgeDriver();
+                    drivers.set(new EdgeDriver());
                     break;
                 case "chromeHeadless":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.setHeadless(true);
-                    driver =  new ChromeDriver(chromeOptions);
+                    drivers.set(new ChromeDriver(chromeOptions));
                     break;
                 case "firefoxHeadless":
                     WebDriverManager.firefoxdriver().setup();
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
                     firefoxOptions.setHeadless(true);
-                    driver =  new FirefoxDriver(firefoxOptions);
+                    drivers.set(new FirefoxDriver(firefoxOptions));
                     break;
                 case "edgeHeadless":
                     WebDriverManager.edgedriver().setup();
                     EdgeOptions edgeOptions = new EdgeOptions();
                     edgeOptions.setHeadless(true);
-                    driver =  new EdgeDriver(edgeOptions);
+                    drivers.set(new EdgeDriver(edgeOptions));
                     break;
                 default:
                     throw new RuntimeException("Unsupported Browser");
@@ -66,7 +66,7 @@ public class Driver {
 
         }
 
-        return driver;
+        return drivers.get();
 
 
 
@@ -74,11 +74,11 @@ public class Driver {
     }
 
 
-    public static void quitDriver(){
+    public static synchronized void quitDriver(){
 
-        if(driver != null){
-            driver.quit();
-            driver = null;
+        if(drivers.get() != null){
+            drivers.get().quit();
+            drivers.remove();
         }
     }
 

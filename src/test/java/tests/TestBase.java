@@ -52,6 +52,7 @@ public abstract class TestBase {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("implicitWait"))));
         driver.get(ConfigReader.getProperty("url"));
+
         logger = extentReport.createTest(method.getName());
     }
 
