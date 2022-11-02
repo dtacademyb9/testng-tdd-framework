@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Run Class Methods in Parallel" parallel="classes" thread-count="4">
+<suite name="Run Class Methods in Parallel" parallel="tests" thread-count="4">
 
-    <test name="Tests">
+    <test name="Tests1">
 
          <classes>
 
              <class name="tests.LoginTests"/>
-             <class name="tests.AllOrdersTests"/>
-             <class name="tests.OrderDetailsTests"/>
-             <class name="tests.PlaceOrderTests"/>
+
 
 
          </classes>
@@ -17,13 +15,39 @@
 
     </test>
 
-    <test name="Tests">
+    <test name="Tests2">
 
         <classes>
 
-            <class name="tests.LoginTests"/>
+
             <class name="tests.AllOrdersTests"/>
+
+
+
+        </classes>
+
+
+    </test>
+
+    <test name="Tests3">
+
+        <classes>
+
+
             <class name="tests.OrderDetailsTests"/>
+
+
+
+        </classes>
+
+
+    </test>
+
+    <test name="Tests4">
+
+        <classes>
+
+
             <class name="tests.PlaceOrderTests"/>
 
 
